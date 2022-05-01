@@ -47,7 +47,9 @@ def list_doc(documents):
     return result
 
 
-def add_new_person(documents, directories, name, number, type_doc, num_direct):
+def add_new_person(documents, directories, type_doc, number, name, num_direct):
+    if type(name) and type(type_doc) and type(num_direct) and type(number) is not str:
+        raise TypeError("Введён неверный тип данных!")
     new_person = {"type": type_doc, "number": number, "name": name}
     if new_person not in documents:
         documents.append(new_person)
@@ -58,7 +60,6 @@ def add_new_person(documents, directories, name, number, type_doc, num_direct):
         directories[num_direct].append(number)
     elif num_direct in directories.keys():
         directories[num_direct].append(number)
-
     return documents, directories
 
 
